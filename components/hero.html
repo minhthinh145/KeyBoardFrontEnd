@@ -1,0 +1,30 @@
+<head>
+    <link rel="stylesheet" href="/css/hero.css">
+</head>
+
+<section class="hero owl-carousel owl-theme" id="hero">
+    <img src="/assets/images/banner.jpg" alt="m3 tkl" class="hero img-100">
+    <img src="/assets/images/banner2.jpg" alt="Naruto" class="hero img-100">
+    <img src="/assets/images/banner3.jpg" alt="mg108w" class="hero img-100">
+</section>
+
+<section class="herotext container text-center scroll">
+    <h1 class="margintop10">Welcome to Okka - The house of <span class="nowrap">Next-level keyboard.</span></h1>
+</section>
+
+<!-- jQuery -->
+<script src="/js/vendor/jquery-3.7.1.min.js"></script>
+<!-- Owl Carousel -->
+<script src="/js/vendor/owl.carousel.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#hero").owlCarousel({
+            items: 1,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            nav: true,
+            dots: true
+        });
+    });
+</script>
