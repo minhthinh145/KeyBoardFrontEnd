@@ -1,7 +1,12 @@
-.main_section1{
+@import "_mixin";
+
+main_section1{
     background-color: #f0f0f0;
     padding: 30px;
     border-radius: 5px; 
+}
+.main section {
+    margin-top: 3rem;
 }
 .container{
     max-width: 1200px;
@@ -9,6 +14,7 @@
     padding: 15px;
     display: flex;
     gap: 30px;  // Khoảng cách giữa các article
+
 }
 
 .section1__article{
@@ -149,3 +155,126 @@ form fieldset .offscreen {
 .margintop2 {
     margin-top: 40px;
 }
+
+/* Định dạng cho main__section1 trong body */
+@mixin grid($number: 12) {
+    display: grid;
+    grid-template-columns: repeat($number, 1fr);
+    gap: 0;  // Để không có khoảng cách giữa các ô
+    border: 1px solid black;  // Viền tổng thể của grid
+  }
+
+@mixin gradientbefore() {
+    background: $gradientno;
+    background-clip: text;
+    transition: all 0.5s;
+}
+
+//test
+.smain{
+    margin: 0 auto;
+    @include flexcenter(column);
+    @include mobile {
+        flex-direction: row;
+    }
+    #{&}__p {
+        font-weight: lighter;
+
+        &:hover {
+            color: $text-hover;
+        }
+    }
+}
+.scontainer {
+    @include grid(4);
+    border:  none;
+}
+  
+.main__section2 {
+    
+    @include grid(4);
+    border :none;
+    .section2__h3 {
+    font-size : 200%;
+    text-align: center;
+    font-weight: bold; /* In đậm */
+    color:black;  
+    grid-column: span 4;}
+    .section2__mainarticle {
+        grid-column: span 7;
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        justify-content: center;
+        @include buttondark(1rem, 1rem);
+        h6 {
+            align-self: flex-end;
+            @include buttonlightdark(1rem, 0);
+            color: map-get($text-color, "white");
+            margin-top: 1.5rem;
+            @include gradientbefore();
+
+            &:hover {
+                @include gradient;
+            }
+
+            &:active {
+                @include buttonlightdark(1rem, 0, $inset: true);
+                color: inherit;
+                margin-top: 1.5rem;
+            }
+        }
+
+        .nowrap {
+            @include gradient();
+            text-align: center
+        }
+    }
+
+    .section2__mainarticle2 {
+        @extend .section2__mainarticle;
+        align-items: flex-start;
+        h3 {
+            span {
+                @include buttondarklight(1rem, 0);
+                color: map-get($text-color, "black");
+            }
+        }
+    }
+    
+    .section3__carousel {
+        grid-column: span 2;
+        .section3__article {
+            @include buttonlight(15px, 2rem);
+            
+            img {
+                margin-bottom: 1rem;
+                border-radius: 10px 10px 0 0;
+            }
+
+            .section3__text{
+                display: grid;
+                grid-template-rows: 3rem 1rem 1fr;
+            }
+            .section3__div {
+                @include flex($horizontal: space-around);
+
+                .section3__ctn {
+                    @include buttonlight(50%, 1rem);
+                    @include gradientbutton($radius: 50%);
+                }
+            }
+        }
+    }
+}
+
+.main .main__p {
+    font-weight: lighter;
+  }
+  .main .main__p:hover {
+    color: hsla(0, 0%, 20%, 0.7);
+  }
+  .right {
+    text-align: right;
+  }
+  

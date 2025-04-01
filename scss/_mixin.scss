@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+$background-color: (
+    "white":#e0e0e0,
+    "black": #333,
+);
+$text-color: (
+    "black": #333,
+    "white": #e0e0e0,
+);
+
+/* $gradient1: rgb(84, 51, 255);
+$gradient2: rgb(32, 189, 255);
+$gradient3: rgb(165, 254, 203); */
+$gradient1: #62cff4;
+$gradient2: #2c67f2;
+$gradientno: rgba(84, 51, 255, 0);
+
+$mobile: 800px;
+
+$text-hover: hsla(0, 0%, 20%, 0.7);
+
+@mixin grid($number: 12) {
+    display: grid;
+    grid-template-columns: repeat($number, 1fr);
+    gap: 1.5rem;
+}
+
+@mixin flex($vertical: inherit, $horizontal: inherit, $flow: inherit) {
+    display: flex;
+    flex-flow: $flow;
+    align-items:  $vertical;
+    justify-content: $horizontal;
+}
+
+@mixin buttondark($radius, $margin: 0, $inset: false) {
+    border-radius: $radius;
+    background: map-get($background-color , "black" );
+    box-shadow:  10px 10px 20px #bebebe,
+                            -10px -10px 20px #fff;
+    padding: 1rem;
+    margin: $margin;
+    color: map-get($text-color, "white");
+    border: rgba($color: #fff, $alpha: 0.2) solid 1px;
+
+    @if $inset {
+        box-shadow: inset 5px 5px 10px #484848,
+                                inset  -5px -5px 10px #626262;
+    }
+}
+
+@mixin buttonlight($radius, $margin: 0, $inset: false) {
+    border-radius: $radius;
+    background: map-get($background-color , "white");
+    box-shadow:  10px 10px 20px #bebebe,
+                            -10px -10px 20px #ffffff;
+    display: inline-block;
+    padding: 1rem;
+    margin: $margin;
+    border: rgba($color: #fff, $alpha: 0.2) solid 1px;
+
+    @if $inset {
+        box-shadow: inset 5px 5px 10px #bebebe,
+                                inset  -5px -5px 10px #ffffff;
+    }
+}
+
+@mixin buttonlightdark ($radius, $margin: 0, $inset: false) {
+    border-radius: $radius;
+    background: linear-gradient(145deg, #2e2e2e, #373737);
+    box-shadow:  10px 10px 20px #2b2b2b,
+                            -10px -10px 20px #3b3b3b;
+    display: inline-block;
+    padding: 1rem;
+    margin: $margin;
+    border: rgba($color: #333, $alpha: 0.2) solid 1px;
+
+    @if $inset {
+        box-shadow: inset 5px 5px 10px #2b2b2b,
+                                inset  -5px -5px 10px #3b3b3b;
+    }
+}
+
+@mixin buttondarklight ($radius, $margin: 0, $inset: false) {
+    border-radius: $radius;
+    background: linear-gradient(145deg, #cacaca, #f0f0f0);
+    box-shadow:  10px 10px 20px #2b2b2b,
+                            -10px -10px 20px #3b3b3b;
+    display: inline-block;
+    padding: 1rem;
+    margin: $margin;
+    border: rgba($color: #333, $alpha: 0.2) solid 1px;
+
+    @if $inset {
+        box-shadow: inset 5px 5px 10px #2b2b2b,
+                                inset  -5px -5px 10px #3b3b3b;
+    }
+}
+
+@mixin gradient() {
+    background: linear-gradient(135deg, $gradient1, $gradient2, $gradient1);
+    color:transparent;
+    background-clip: text;
+    animation: animateBorder 10s linear infinite;
+    background-size: 400%;
+}
+
+@mixin gradientbefore() {
+    background: $gradientno;
+    background-clip: text;
+    transition: all 0.5s;
+}
+
+@mixin gradientbutton($radius: 999rem, $margin: 1rem) {
+    @include gradientbefore();
+    &:hover{
+        @include gradient();
+    }
+
+    &:active {
+        @include buttonlight($radius, $margin, $inset: true);
+        color: map-get($text-color, "black")
+    }
+}
+
+@mixin flexcenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
