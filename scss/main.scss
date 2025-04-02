@@ -172,7 +172,7 @@ form fieldset .offscreen {
 
 //test
 .smain{
-    margin: 0 auto;
+    margin-left : 0 auto;
     @include flexcenter(column);
     @include mobile {
         flex-direction: row;

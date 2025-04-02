@@ -166,7 +166,7 @@ form fieldset .offscreen {
 
 /* Định dạng cho main__section1 trong body */
 .smain {
-  margin: 0 auto;
+  margin-left: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
